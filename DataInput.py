@@ -100,7 +100,6 @@ def findStock(symbol):
     for i in range(len(Stock_List)):
         if Stock_List[i].getSymbol()==symbol:
             return Stock_List[i]
-        
     #if stock is not in Stock_List (probably wrong spelled?)
     return None
     
@@ -112,7 +111,8 @@ dataPrep()
 #print(findStock('YHOO').getName())
 #print(Stock_List[0].getSymbol())
 print(c.getCorrelation(findStock('AAPL'), findStock('MMM')))
+c.printCorrelation(findStock('AAPL'), findStock('MMM'))
 #print(c.getCorrelation(Stock_List[5], Stock_List[80]))
 
-
+print(findStock('AAPL').getName())
 

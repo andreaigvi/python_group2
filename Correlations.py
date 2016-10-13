@@ -19,7 +19,6 @@ def getCorrelation(stock1, stock2):
     given in the homework assignment
     Output: 
     """
-
     
     x = stock1.getDailyReturnAll()
     y = stock2.getDailyReturnAll()
@@ -41,7 +40,7 @@ def printCorrelation(stock1, stock2):
     Prints out the companies full names of the two given stocks and
     the correlation between those two
     """
-    print('')
+    print('The correlation between the stocks of ' + stock1.getName() + ' and ' + stock2.getName() + ' is: ' + str(getCorrelation(stock1,stock2)))
 
 
 def getCorrelationList(stock, stock_list):
