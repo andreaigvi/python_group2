@@ -11,21 +11,15 @@ import Stock as st
 import numpy as np
 
 
-    
-    
+
 def getCorrelation(stock1, stock2):
     """
     Returns the correlation for two given stocks using the formula
     given in the homework assignment
     Output: 
-    """
-    
+    """  
     x = stock1.getDailyReturnAll()
     y = stock2.getDailyReturnAll()
-    
-    #s1 = stockFirst.getYearlyReturn()
-    #s2 = stockSecond.getYearlyReturn()
-    
     n = len(x)
     
     xy = 0
@@ -40,43 +34,61 @@ def printCorrelation(stock1, stock2):
     Prints out the companies full names of the two given stocks and
     the correlation between those two
     """
-    print('The correlation between the stocks of ' + stock1.getName() + ' and ' + stock2.getName() + ' is: ' + str(getCorrelation(stock1,stock2)))
-
-
+    print("Company 1: " +stock1.getName() + ", Company 2: " + stock2.getName()) 
+    print("Correlation: " + str(getCorrelation(stock1,stock2)))
+    #Round function to format corr
+    #Format 
+    
 def getCorrelationList(stock, stock_list):
     """
     Returns for a given stock a list with the correlation to all other 
     stocks inside a list of tuples (stock name, correlation) and sorts the
     list according to the correlation (descending)
     """
-    return None #correlation_list
+    corlist = []
+    for i in stock_list:
+        if i.getName() == stock.getName():
+            continue
+        cortup = (i.getName(), getCorrelation(stock,i))
+        corlist.append(cortup)
+    
+    corlist.sort(key=lambda x: x[1], reverse=True)           
+    return corlist #correlation_list
 
 def getLeastCorrelatedCompany(stock, stock_list):
     """
     Returns for a given stock the company with the least correlation and the
     correlation to this company
-    """
-    return None
+    """ 
+    corlist = []    
+    corlist = getCorrelationList(stock,stock_list)
+    leastcor = corlist[len(corlist)-1]
+    return leastcor
 
 def printLeastCorrelatedCompany(stock, stock_list):
     """
     Prints out for a given stock the name of the company, the company it has
     the least correlation to and the name of the related company
     """
-    print('')
+    print("Company 1: " + stock.getName() + ", Company 2: " + getLeastCorrelatedCompany(stock,stock_list)[0]) 
+    print("Correlation: " + str(getLeastCorrelatedCompany(stock,stock_list)[1]))
 
 
 def getHighestCorrelatedCompany(stock, stock_list):
     """
     Similar to LeastCorrelatedCompany
     """
-    return None
+    corlist = []    
+    corlist = getCorrelationList(stock, stock_list)    
+    highestcor = corlist[0]
+    return highestcor
 
 def printHighestCorrelatedCompany(stock, stock_list):
     """
     Similar to LeastCorrelatedCompany
     """
-    print('')
+    print("Company 1: " + stock.getName() + ", Company 2: " + getHighestCorrelatedCompany(stock,stock_list)[0]) 
+    print("Correlation: " + str(getHighestCorrelatedCompany(stock,stock_list)[1]))
 
 
 
